@@ -197,7 +197,7 @@
       "settings": {
         "heading": "<strong>MORE TO DISCOVER</strong>",
         "heading_size": "h2",
-        "desktop_layout": "right",
+        "desktop_layout": "bottom",
         "mobile_layout": "collage",
         "card_styles": "none",
         "color_scheme": "",
