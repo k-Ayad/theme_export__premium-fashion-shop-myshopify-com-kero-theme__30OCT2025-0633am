@@ -181,7 +181,7 @@
         "video_rPLPex": {
           "type": "video",
           "settings": {
-            "enable_video_autoplay": false,
+            "enable_video_autoplay": true,
             "cover_image": "shopify://shop_images/Screenshot_2025-10-27_161518.png",
             "video_url": "https://www.youtube.com/watch?v=Jo0iU-W_NDQ",
             "description": "Describe the video"
