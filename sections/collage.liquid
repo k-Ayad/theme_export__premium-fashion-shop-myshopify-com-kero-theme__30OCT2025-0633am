@@ -43,7 +43,16 @@
                 <div
                   class="media media--transparent ratio"
                   {% if block.settings.image != blank %}
-                    style="--ratio-percent: {{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100 }}%"
+                    {%- comment -%} Custom aspect ratio control {%- endcomment -%}
+                    {% if block.settings.image_ratio == 'adapt' %}
+                      style="--ratio-percent: {{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100 }}%"
+                    {% elsif block.settings.image_ratio == 'square' %}
+                      style="--ratio-percent: 100%"
+                    {% elsif block.settings.image_ratio == 'portrait' %}
+                      style="--ratio-percent: 150%"
+                    {% elsif block.settings.image_ratio == 'landscape' %}
+                      style="--ratio-percent: 66.66%"
+                    {% endif %}
                   {% else %}
                     style="--ratio-percent: 100%"
                   {% endif %}
@@ -114,99 +123,135 @@
               %}
             {%- when 'video' -%}
               <div class="collage-card {% if section.settings.card_styles == 'none' %}global-media-settings{% else %}{{ section.settings.card_styles }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
-                <modal-opener data-modal="#PopupModal-{{ block.id }}">
-                  <div class="deferred-media">
-                    <button
-                      class="deferred-media__poster full-unstyled-link"
-                      type="button"
-                      aria-label="{{ 'sections.video.load_video' | t: description: block.settings.description | escape }}"
-                      aria-haspopup="dialog"
-                      data-media-id="{{ block.settings.video_url.id }}"
+                {%- comment -%} Check if autoplay is enabled {%- endcomment -%}
+                {% if block.settings.enable_video_autoplay %}
+                  {%- comment -%} Autoplay inline video {%- endcomment -%}
+                  <div class="collage-video-inline">
+                    <div
+                      class="media media--transparent ratio"
+                      {% if block.settings.cover_image != blank %}
+                        style="--ratio-percent: {{ 1 | divided_by: block.settings.cover_image.aspect_ratio | times: 100 }}%"
+                      {% else %}
+                        style="--ratio-percent: 56.25%"
+                      {% endif %}
                     >
-                      <div
-                        class="media media--transparent ratio"
-                        {% if block.settings.cover_image != blank %}
-                          style="--ratio-percent: {{ 1 | divided_by: block.settings.cover_image.aspect_ratio | times: 100 }}%"
-                        {% else %}
-                          style="--ratio-percent: 100%"
-                        {% endif %}
-                      >
-                        <span class="deferred-media__poster-button motion-reduce">
-                          <span class="svg-wrapper">
-                            {{- 'icon-play.svg' | inline_asset_content -}}
-                          </span>
-                        </span>
-
-                        {%- if block.settings.cover_image != blank -%}
-                          {%- capture sizes -%}
-                            (min-width: {{ settings.page_width }}px)
-                            {% if section.blocks.size == 1 -%}
-                              calc({{ settings.page_width }}px - 100px)
-                            {%- else -%}
-                              {{- settings.page_width | minus: 100 | times: 0.67 | round }}px
-                            {%- endif -%}
-                            , (min-width: 750px)
-                            {%- if section.blocks.size == 1 %} calc(100vw - 100px){% else %} 500px{% endif -%}
-                            , calc(100vw - 30px)
-                          {%- endcapture -%}
-                          {{
-                            block.settings.cover_image
-                            | image_url: width: 3000
-                            | image_tag: sizes: sizes, widths: '550, 720, 990, 1100, 1500, 2200, 3000'
-                          }}
-                        {%- else -%}
-                          {{ 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
-                        {%- endif -%}
-                      </div>
-                    </button>
-                  </div>
-                </modal-opener>
-                <modal-dialog
-                  id="PopupModal-{{ block.id }}"
-                  class="modal-video media-modal color-{{ settings.color_schemes | first }}"
-                >
-                  <div
-                    class="modal-video__content"
-                    role="dialog"
-                    aria-label="{{ block.settings.description | escape }}"
-                    aria-modal="true"
-                    tabindex="-1"
-                  >
-                    <button
-                      id="ModalClose-{{ block.id }}"
-                      type="button"
-                      class="modal-video__toggle"
-                      aria-label="{{ 'accessibility.close' | t }}"
-                    >
-                      <span class="svg-wrapper">
-                        {{- 'icon-close.svg' | inline_asset_content -}}
-                      </span>
-                    </button>
-                    <div class="modal-video__content-info">
-                      <deferred-media class="modal-video__video template-popup">
-                        <template>
-                          {%- if block.settings.video_url.type == 'youtube' -%}
-                            <iframe
-                              src="https://www.youtube.com/embed/{{ block.settings.video_url.id }}?enablejsapi=1"
-                              class="js-youtube"
-                              allow="autoplay; encrypted-media"
-                              allowfullscreen
-                              title="{{ block.settings.description | escape }}"
-                            ></iframe>
-                          {%- else -%}
-                            <iframe
-                              src="https://player.vimeo.com/video/{{ block.settings.video_url.id }}"
-                              class="js-vimeo"
-                              allow="autoplay; encrypted-media"
-                              allowfullscreen
-                              title="{{ block.settings.description | escape }}"
-                            ></iframe>
-                          {%- endif -%}
-                        </template>
-                      </deferred-media>
+                      {%- if block.settings.video_url.type == 'youtube' -%}
+                        <iframe
+                          src="https://www.youtube.com/embed/{{ block.settings.video_url.id }}?autoplay=1&mute=1&loop=1&playlist={{ block.settings.video_url.id }}&controls=0&modestbranding=1&rel=0"
+                          class="js-youtube"
+                          allow="autoplay; encrypted-media"
+                          allowfullscreen
+                          title="{{ block.settings.description | escape }}"
+                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+                        ></iframe>
+                      {%- elsif block.settings.video_url.type == 'vimeo' -%}
+                        <iframe
+                          src="https://player.vimeo.com/video/{{ block.settings.video_url.id }}?autoplay=1&muted=1&loop=1&background=1&controls=0"
+                          class="js-vimeo"
+                          allow="autoplay; encrypted-media"
+                          allowfullscreen
+                          title="{{ block.settings.description | escape }}"
+                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+                        ></iframe>
+                      {%- endif -%}
                     </div>
                   </div>
-                </modal-dialog>
+                {% else %}
+                  {%- comment -%} Original popup video behavior {%- endcomment -%}
+                  <modal-opener data-modal="#PopupModal-{{ block.id }}">
+                    <div class="deferred-media">
+                      <button
+                        class="deferred-media__poster full-unstyled-link"
+                        type="button"
+                        aria-label="{{ 'sections.video.load_video' | t: description: block.settings.description | escape }}"
+                        aria-haspopup="dialog"
+                        data-media-id="{{ block.settings.video_url.id }}"
+                      >
+                        <div
+                          class="media media--transparent ratio"
+                          {% if block.settings.cover_image != blank %}
+                            style="--ratio-percent: {{ 1 | divided_by: block.settings.cover_image.aspect_ratio | times: 100 }}%"
+                          {% else %}
+                            style="--ratio-percent: 100%"
+                          {% endif %}
+                        >
+                          <span class="deferred-media__poster-button motion-reduce">
+                            <span class="svg-wrapper">
+                              {{- 'icon-play.svg' | inline_asset_content -}}
+                            </span>
+                          </span>
+
+                          {%- if block.settings.cover_image != blank -%}
+                            {%- capture sizes -%}
+                              (min-width: {{ settings.page_width }}px)
+                              {% if section.blocks.size == 1 -%}
+                                calc({{ settings.page_width }}px - 100px)
+                              {%- else -%}
+                                {{- settings.page_width | minus: 100 | times: 0.67 | round }}px
+                              {%- endif -%}
+                              , (min-width: 750px)
+                              {%- if section.blocks.size == 1 %} calc(100vw - 100px){% else %} 500px{% endif -%}
+                              , calc(100vw - 30px)
+                            {%- endcapture -%}
+                            {{
+                              block.settings.cover_image
+                              | image_url: width: 3000
+                              | image_tag: sizes: sizes, widths: '550, 720, 990, 1100, 1500, 2200, 3000'
+                            }}
+                          {%- else -%}
+                            {{ 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+                          {%- endif -%}
+                        </div>
+                      </button>
+                    </div>
+                  </modal-opener>
+                  <modal-dialog
+                    id="PopupModal-{{ block.id }}"
+                    class="modal-video media-modal color-{{ settings.color_schemes | first }}"
+                  >
+                    <div
+                      class="modal-video__content"
+                      role="dialog"
+                      aria-label="{{ block.settings.description | escape }}"
+                      aria-modal="true"
+                      tabindex="-1"
+                    >
+                      <button
+                        id="ModalClose-{{ block.id }}"
+                        type="button"
+                        class="modal-video__toggle"
+                        aria-label="{{ 'accessibility.close' | t }}"
+                      >
+                        <span class="svg-wrapper">
+                          {{- 'icon-close.svg' | inline_asset_content -}}
+                        </span>
+                      </button>
+                      <div class="modal-video__content-info">
+                        <deferred-media class="modal-video__video template-popup">
+                          <template>
+                            {%- if block.settings.video_url.type == 'youtube' -%}
+                              <iframe
+                                src="https://www.youtube.com/embed/{{ block.settings.video_url.id }}?enablejsapi=1"
+                                class="js-youtube"
+                                allow="autoplay; encrypted-media"
+                                allowfullscreen
+                                title="{{ block.settings.description | escape }}"
+                              ></iframe>
+                            {%- else -%}
+                              <iframe
+                                src="https://player.vimeo.com/video/{{ block.settings.video_url.id }}"
+                                class="js-vimeo"
+                                allow="autoplay; encrypted-media"
+                                allowfullscreen
+                                title="{{ block.settings.description | escape }}"
+                              ></iframe>
+                            {%- endif -%}
+                          </template>
+                        </deferred-media>
+                      </div>
+                    </div>
+                  </modal-dialog>
+                {% endif %}
               </div>
           {%- endcase -%}
         </div>
@@ -352,6 +397,31 @@
           "type": "image_picker",
           "id": "image",
           "label": "t:sections.collage.blocks.image.settings.image.label"
+        },
+        {
+          "type": "select",
+          "id": "image_ratio",
+          "options": [
+            {
+              "value": "adapt",
+              "label": "Adapt to image"
+            },
+            {
+              "value": "square",
+              "label": "Square (1:1)"
+            },
+            {
+              "value": "portrait",
+              "label": "Portrait (2:3)"
+            },
+            {
+              "value": "landscape",
+              "label": "Landscape (3:2)"
+            }
+          ],
+          "default": "adapt",
+          "label": "Image aspect ratio",
+          "info": "Control the aspect ratio of the image"
         }
       ]
     },
@@ -387,6 +457,13 @@
       "type": "video",
       "name": "t:sections.collage.blocks.video.name",
       "settings": [
+        {
+          "type": "checkbox",
+          "id": "enable_video_autoplay",
+          "default": false,
+          "label": "Enable video autoplay",
+          "info": "When enabled, video plays automatically inline. When disabled, video opens in a popup on click."
+        },
         {
           "type": "image_picker",
           "id": "cover_image",
