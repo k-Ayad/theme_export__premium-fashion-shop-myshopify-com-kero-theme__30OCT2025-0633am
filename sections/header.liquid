@@ -74,6 +74,52 @@
       padding-top: 0.5rem;
     }
   }
+
+  /* Logo Flip Animation Styles */
+  .header__heading-logo-wrapper {
+    perspective: 1000px;
+    display: inline-block;
+  }
+
+  .header__heading-logo {
+    display: block;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+  }
+
+  {%- if section.settings.enable_logo_flip -%}
+    .header__heading-logo.flip-animation-x {
+      animation: flipLogoX {{ section.settings.logo_flip_duration }}s ease-in-out infinite;
+    }
+
+    .header__heading-logo.flip-animation-y {
+      animation: flipLogoY {{ section.settings.logo_flip_duration }}s ease-in-out infinite;
+    }
+
+    @keyframes flipLogoX {
+      0% {
+        transform: rotateX(0deg);
+      }
+      5% {
+        transform: rotateX(360deg);
+      }
+      100% {
+        transform: rotateX(360deg);
+      }
+    }
+
+    @keyframes flipLogoY {
+      0% {
+        transform: rotateY(0deg);
+      }
+      5% {
+        transform: rotateY(360deg);
+      }
+      100% {
+        transform: rotateY(360deg);
+      }
+    }
+  {%- endif -%}
 </style>
 
 {%- style -%}
@@ -162,7 +208,7 @@
               settings.logo
               | image_url: width: 600
               | image_tag:
-                class: 'header__heading-logo motion-reduce',
+                class: 'header__heading-logo motion-reduce{% if section.settings.enable_logo_flip %} flip-animation-{{ section.settings.logo_flip_axis }}{% endif %}',
                 widths: widths,
                 height: logo_height,
                 width: settings.logo_width,
@@ -205,7 +251,7 @@
               settings.logo
               | image_url: width: 600
               | image_tag:
-                class: 'header__heading-logo',
+                class: 'header__heading-logo{% if section.settings.enable_logo_flip %} flip-animation-{{ section.settings.logo_flip_axis }}{% endif %}',
                 widths: widths,
                 height: logo_height,
                 width: settings.logo_width,
@@ -512,6 +558,45 @@
       ],
       "default": "center",
       "label": "t:sections.header.settings.mobile_logo_position.label"
+    },
+    {
+      "type": "header",
+      "content": "Logo Flip Animation"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_logo_flip",
+      "label": "Enable logo flip animation",
+      "default": false,
+      "info": "Animate the logo with a flip effect"
+    },
+    {
+      "type": "range",
+      "id": "logo_flip_duration",
+      "min": 3,
+      "max": 60,
+      "step": 1,
+      "unit": "s",
+      "label": "Flip duration",
+      "default": 10,
+      "info": "Time between each flip animation (in seconds)"
+    },
+    {
+      "type": "select",
+      "id": "logo_flip_axis",
+      "label": "Flip axis",
+      "options": [
+        {
+          "value": "x",
+          "label": "X-axis (Horizontal flip)"
+        },
+        {
+          "value": "y",
+          "label": "Y-axis (Vertical flip)"
+        }
+      ],
+      "default": "y",
+      "info": "Choose the direction of the flip animation"
     },
     {
       "type": "link_list",
