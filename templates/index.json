@@ -1,1 +1,215 @@
-{"sections":{"slideshow_hidbJf":{"type":"slideshow","blocks":{"slide_JcVE76":{"type":"slide","settings":{"video":"shopify:\/\/files\/videos\/611d7df48f9f44098a12721abaafff13.mp4","video_mobile":"shopify:\/\/files\/videos\/611d7df48f9f44098a12721abaafff13.mp4","heading":"Image slide","heading_size":"h1","subheading":"Tell your brand's story through images","text_size":"body","button_label":"Button label","link":"","button_style_secondary":false,"show_text_box":false,"box_align":"bottom-left","box_align_mobile":"bottom-left","content_width_mobile":60,"text_alignment":"left","text_alignment_mobile":"left","color_scheme":"scheme-3"}},"slide_FjzWye":{"type":"slide","settings":{"image":"shopify:\/\/shop_images\/HomeImage1.jpg","image_mobile":"shopify:\/\/shop_images\/HomeImage4.jpg","heading":"Image slide","heading_size":"h1","subheading":"Tell your brand's story through images","text_size":"body","button_label":"Button label","link":"","button_style_secondary":false,"show_text_box":false,"box_align":"bottom-left","box_align_mobile":"bottom-left","content_width_mobile":100,"text_alignment":"center","text_alignment_mobile":"center","color_scheme":"scheme-3"}}},"block_order":["slide_JcVE76","slide_FjzWye"],"name":"t:sections.slideshow.presets.name","settings":{"layout":"full_bleed","slide_height":"full_screen","slider_visual":"counter","auto_rotate":false,"change_slides_speed":5,"show_text_below":true,"accessibility_info":"Slideshow about our brand","image_quality_desktop":90,"image_quality_mobile":85,"image_behavior":"none"}},"collection_list_thYE8D":{"type":"collection-list","blocks":{"featured_collection_VgAEY7":{"type":"featured_collection","settings":{"collection":"pants"}},"featured_collection_RqeQqt":{"type":"featured_collection","settings":{"collection":"tops"}},"featured_collection_eNpFf8":{"type":"featured_collection","settings":{"collection":"shorts"}},"featured_collection_mHFYgH":{"type":"featured_collection","settings":{"collection":"tshirts"}},"featured_collection_aJnPmN":{"type":"featured_collection","settings":{"collection":"clearance"}}},"block_order":["featured_collection_VgAEY7","featured_collection_RqeQqt","featured_collection_eNpFf8","featured_collection_mHFYgH","featured_collection_aJnPmN"],"name":"t:sections.collection-list.presets.name","settings":{"title":"<strong>FEATURED COLLECTIONS<\/strong>","heading_size":"h2","image_ratio":"portrait","columns_desktop":5,"color_scheme":"","show_view_all":false,"columns_mobile":"2","swipe_on_mobile":true,"image_quality":80,"padding_top":80,"padding_bottom":0}},"featured_collection":{"type":"featured-collection","custom_css":["slider-component {max-width: 1050px;}"],"settings":{"collection":"all","products_to_show":24,"title":"<strong>NEW ARRIVALS<\/strong>","heading_size":"h2","description":"","show_description":false,"description_style":"body","columns_desktop":4,"enable_desktop_slider":false,"full_width":false,"show_view_all":true,"view_all_style":"solid","color_scheme":"scheme-1","image_ratio":"adapt","image_shape":"default","show_secondary_image":true,"show_vendor":false,"show_rating":false,"quick_add":"none","image_quality":90,"columns_mobile":"2","swipe_on_mobile":false,"padding_top":80,"padding_bottom":40}},"collage_K96wQB":{"type":"collage","blocks":{"image_EK9XMV":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/omar7barakat_StreetWear_-27.webp"}},"image_A77KYj":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/omar7barakat_StreetWear_-27.webp"}},"video_rPLPex":{"type":"video","settings":{"cover_image":"shopify:\/\/shop_images\/Screenshot_2025-10-27_161518.png","video_url":"https:\/\/www.youtube.com\/watch?v=Jo0iU-W_NDQ","description":"Describe the video"}}},"block_order":["image_EK9XMV","image_A77KYj","video_rPLPex"],"name":"t:sections.collage.presets.name","settings":{"heading":"<strong>MORE TO DISCOVER<\/strong>","heading_size":"h2","desktop_layout":"right","mobile_layout":"collage","card_styles":"none","color_scheme":"","padding_top":36,"padding_bottom":36}}},"order":["slideshow_hidbJf","collection_list_thYE8D","featured_collection","collage_K96wQB"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "slideshow_hidbJf": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_JcVE76": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/611d7df48f9f44098a12721abaafff13.mp4",
+            "video_mobile": "shopify://files/videos/611d7df48f9f44098a12721abaafff13.mp4",
+            "heading": "Image slide",
+            "heading_size": "h1",
+            "subheading": "Tell your brand's story through images",
+            "text_size": "body",
+            "button_label": "Button label",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "bottom-left",
+            "box_align_mobile": "bottom-left",
+            "content_width_mobile": 60,
+            "text_alignment": "left",
+            "text_alignment_mobile": "left",
+            "color_scheme": "scheme-3"
+          }
+        },
+        "slide_FjzWye": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/HomeImage1.jpg",
+            "image_mobile": "shopify://shop_images/HomeImage4.jpg",
+            "heading": "Image slide",
+            "heading_size": "h1",
+            "subheading": "Tell your brand's story through images",
+            "text_size": "body",
+            "button_label": "Button label",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "bottom-left",
+            "box_align_mobile": "bottom-left",
+            "content_width_mobile": 100,
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-3"
+          }
+        }
+      },
+      "block_order": [
+        "slide_JcVE76",
+        "slide_FjzWye"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "full_screen",
+        "slider_visual": "counter",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "show_text_below": true,
+        "accessibility_info": "Slideshow about our brand",
+        "image_quality_desktop": 90,
+        "image_quality_mobile": 85,
+        "image_behavior": "none"
+      }
+    },
+    "collection_list_thYE8D": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_VgAEY7": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "pants"
+          }
+        },
+        "featured_collection_RqeQqt": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "tops"
+          }
+        },
+        "featured_collection_eNpFf8": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "shorts"
+          }
+        },
+        "featured_collection_mHFYgH": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "tshirts"
+          }
+        },
+        "featured_collection_aJnPmN": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "clearance"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_VgAEY7",
+        "featured_collection_RqeQqt",
+        "featured_collection_eNpFf8",
+        "featured_collection_mHFYgH",
+        "featured_collection_aJnPmN"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "<strong>FEATURED COLLECTIONS</strong>",
+        "heading_size": "h2",
+        "image_ratio": "portrait",
+        "columns_desktop": 5,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "image_quality": 80,
+        "padding_top": 80,
+        "padding_bottom": 0
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "custom_css": [
+        "slider-component {max-width: 1050px;}"
+      ],
+      "settings": {
+        "collection": "all",
+        "products_to_show": 24,
+        "title": "<strong>NEW ARRIVALS</strong>",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "image_quality": 90,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 80,
+        "padding_bottom": 40
+      }
+    },
+    "collage_K96wQB": {
+      "type": "collage",
+      "blocks": {
+        "image_EK9XMV": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/omar7barakat_StreetWear_-27.webp",
+            "image_ratio": "square"
+          }
+        },
+        "image_A77KYj": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/omar7barakat_StreetWear_-27.webp",
+            "image_ratio": "square"
+          }
+        },
+        "video_rPLPex": {
+          "type": "video",
+          "settings": {
+            "enable_video_autoplay": false,
+            "cover_image": "shopify://shop_images/Screenshot_2025-10-27_161518.png",
+            "video_url": "https://www.youtube.com/watch?v=Jo0iU-W_NDQ",
+            "description": "Describe the video"
+          }
+        }
+      },
+      "block_order": [
+        "image_EK9XMV",
+        "image_A77KYj",
+        "video_rPLPex"
+      ],
+      "name": "t:sections.collage.presets.name",
+      "settings": {
+        "heading": "<strong>MORE TO DISCOVER</strong>",
+        "heading_size": "h2",
+        "desktop_layout": "right",
+        "mobile_layout": "collage",
+        "card_styles": "none",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "slideshow_hidbJf",
+    "collection_list_thYE8D",
+    "featured_collection",
+    "collage_K96wQB"
+  ]
+}
