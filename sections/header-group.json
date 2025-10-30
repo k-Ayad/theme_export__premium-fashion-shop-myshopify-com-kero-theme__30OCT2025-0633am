@@ -41,7 +41,7 @@
         "logo_position": "middle-center",
         "mobile_logo_position": "center",
         "enable_logo_flip": true,
-        "logo_flip_duration": 10,
+        "logo_flip_duration": 5,
         "logo_flip_axis": "y",
         "logo_flip_count": 2,
         "menu": "main-menu",
