@@ -88,6 +88,8 @@
   }
 
   {%- if section.settings.enable_logo_flip -%}
+    {%- assign flip_degrees = section.settings.logo_flip_count | times: 360 -%}
+    
     .header__heading-logo.flip-animation-x {
       animation: flipLogoX {{ section.settings.logo_flip_duration }}s ease-in-out infinite;
     }
@@ -101,10 +103,10 @@
         transform: rotateX(0deg);
       }
       5% {
-        transform: rotateX(360deg);
+        transform: rotateX({{ flip_degrees }}deg);
       }
       100% {
-        transform: rotateX(360deg);
+        transform: rotateX({{ flip_degrees }}deg);
       }
     }
 
@@ -113,10 +115,10 @@
         transform: rotateY(0deg);
       }
       5% {
-        transform: rotateY(360deg);
+        transform: rotateY({{ flip_degrees }}deg);
       }
       100% {
-        transform: rotateY(360deg);
+        transform: rotateY({{ flip_degrees }}deg);
       }
     }
   {%- endif -%}
@@ -605,6 +607,17 @@
       ],
       "default": "y",
       "info": "Choose the direction of the flip animation"
+    },
+    {
+      "type": "range",
+      "id": "logo_flip_count",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "x",
+      "label": "Number of flips",
+      "default": 3,
+      "info": "How many times the logo flips in each cycle"
     },
     {
       "type": "link_list",
