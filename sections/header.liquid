@@ -89,6 +89,7 @@
 
   {%- if section.settings.enable_logo_flip -%}
     {%- assign flip_degrees = section.settings.logo_flip_count | times: 360 -%}
+    {%- assign flip_speed_percent = section.settings.logo_flip_speed -%}
     
     .header__heading-logo.flip-animation-x {
       animation: flipLogoX {{ section.settings.logo_flip_duration }}s ease-in-out infinite;
@@ -102,7 +103,7 @@
       0% {
         transform: rotateX(0deg);
       }
-      10% {
+      {{ flip_speed_percent }}% {
         transform: rotateX({{ flip_degrees }}deg);
       }
       100% {
@@ -114,7 +115,7 @@
       0% {
         transform: rotateY(0deg);
       }
-      5% {
+      {{ flip_speed_percent }}% {
         transform: rotateY({{ flip_degrees }}deg);
       }
       100% {
@@ -618,6 +619,17 @@
       "label": "Number of flips",
       "default": 3,
       "info": "How many times the logo flips in each cycle"
+    },
+    {
+      "type": "range",
+      "id": "logo_flip_speed",
+      "min": 5,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "label": "Flip speed",
+      "default": 15,
+      "info": "How fast the flip happens (lower = faster, higher = slower)"
     },
     {
       "type": "link_list",
