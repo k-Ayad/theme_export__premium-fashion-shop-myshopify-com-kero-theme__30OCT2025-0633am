@@ -44,6 +44,7 @@
         "logo_flip_duration": 5,
         "logo_flip_axis": "y",
         "logo_flip_count": 2,
+        "logo_flip_speed": 30,
         "menu": "main-menu",
         "menu_type_desktop": "drawer",
         "sticky_header_type": "always",
