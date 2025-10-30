@@ -43,6 +43,7 @@
         "enable_logo_flip": true,
         "logo_flip_duration": 10,
         "logo_flip_axis": "y",
+        "logo_flip_count": 2,
         "menu": "main-menu",
         "menu_type_desktop": "drawer",
         "sticky_header_type": "on-scroll-up",
