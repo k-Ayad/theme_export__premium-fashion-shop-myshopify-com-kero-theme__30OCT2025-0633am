@@ -1,0 +1,144 @@
+/* ====================================
+   SLIDESHOW VIDEO SUPPORT STYLES
+   Add these styles to component-slideshow.css
+   ==================================== */
+
+/* Video Base Styles */
+.slideshow__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Ensure video fills the container properly */
+.slideshow__media video {
+  display: block;
+}
+
+/* Desktop/Mobile Video Display Logic */
+@media screen and (max-width: 749px) {
+  .slideshow__video--desktop {
+    display: block !important;
+  }
+  
+  .slideshow__video--mobile {
+    display: block !important;
+  }
+  
+  /* Hide desktop video when mobile video exists */
+  .slideshow__media:has(.slideshow__video--mobile) .slideshow__video--desktop {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .slideshow__video--desktop {
+    display: block !important;
+  }
+  
+  .slideshow__video--mobile {
+    display: none !important;
+  }
+}
+
+/* Image Responsive Display */
+.slideshow__image--desktop.hide-mobile {
+  display: block;
+}
+
+.slideshow__image--mobile.hide-desktop {
+  display: none;
+}
+
+@media screen and (max-width: 749px) {
+  .slideshow__image--desktop.hide-mobile {
+    display: none;
+  }
+  
+  .slideshow__image--mobile.hide-desktop {
+    display: block;
+  }
+}
+
+/* Ensure images within picture tags behave correctly */
+.slideshow__image--desktop img,
+.slideshow__image--mobile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Video with zoom animation */
+.banner__media.animate--zoom-in .slideshow__video {
+  position: fixed;
+  height: 100vh;
+}
+
+/* Adapt image height for videos */
+.banner--adapt .slideshow__media:has(video) {
+  height: auto;
+  min-height: 400px;
+}
+
+@media screen and (max-width: 749px) {
+  .banner--adapt .slideshow__media:has(video) {
+    min-height: 300px;
+  }
+}
+
+/* Ensure video plays smoothly during slide transitions */
+.slideshow__slide .slideshow__video {
+  transition: opacity 0.3s ease;
+}
+
+/* Video loading state */
+.slideshow__video:not([src]) {
+  background-color: rgba(var(--color-foreground), 0.04);
+}
+
+/* Maintain aspect ratio for videos when using adapt height */
+.slideshow--placeholder.banner--adapt_image .slideshow__media:has(video) {
+  aspect-ratio: 16 / 9;
+}
+
+@media screen and (max-width: 749px) {
+  .slideshow--placeholder.banner--mobile-bottom.banner--adapt_image .slideshow__media:has(video),
+  .slideshow--placeholder.banner--adapt_image:not(.banner--mobile-bottom) .slideshow__media:has(video) {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* Ensure overlay works with videos */
+.banner__media::after {
+  pointer-events: none;
+}
+
+/* Performance optimization for videos */
+.slideshow__video {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Fix for video flickering on some browsers */
+.slideshow__media {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Ensure video doesn't overflow */
+.slideshow__media {
+  overflow: hidden;
+}
+
+/* Accessibility - hide video controls but keep it accessible */
+.slideshow__video::-webkit-media-controls {
+  display: none !important;
+}
+
+.slideshow__video::-webkit-media-controls-enclosure {
+  display: none !important;
+}

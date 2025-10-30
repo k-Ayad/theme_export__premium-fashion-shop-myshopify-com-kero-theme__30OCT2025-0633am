@@ -1,0 +1,453 @@
+/* ====================================
+   SLIDESHOW SECTION-SPECIFIC OVERRIDES
+   Scoped to slideshow-component to prevent affecting other sections
+   Add to component-slideshow-video.css or create as separate file
+   ==================================== */
+
+/* ====================================
+   SCOPE: All rules are prefixed with slideshow-component
+   to ensure they only affect the slideshow section
+   ==================================== */
+
+/* Override base.css .media > img object-fit for slideshow only */
+slideshow-component .media > img,
+slideshow-component .slideshow__media img,
+slideshow-component .slideshow__image {
+  /* object-fit: contain !important; */
+  object-position: center center !important;
+}
+
+/* Videos should still use cover */
+slideshow-component .slideshow__video {
+  object-fit: cover !important;
+  object-position: center center !important;
+}
+
+/* Base Media Item Styles - Scoped to slideshow */
+slideshow-component .slideshow__media-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+}
+
+/* Ensure media container is properly sized */
+slideshow-component .slideshow__media {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Override base.css position: absolute for our images */
+slideshow-component .slideshow__media > img {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+}
+
+/* ====================================
+   SECTION HEIGHT OPTIONS
+   ==================================== */
+
+/* Full Screen Height (100vh) - Scoped to slideshow */
+slideshow-component .banner--full_screen,
+slideshow-component .banner--full_screen .slideshow,
+slideshow-component .banner--full_screen .slideshow__slide,
+slideshow-component .banner--full_screen .slideshow__media {
+  min-height: 100vh !important;
+  height: 100vh !important;
+}
+
+/* Override any conflicting banner styles */
+slideshow-component .slideshow.banner--full_screen {
+  min-height: 100vh !important;
+  height: 100vh !important;
+}
+
+/* ====================================
+   DESKTOP MEDIA DISPLAY (≥750px)
+   Strict hiding rules to prevent conflicts
+   ==================================== */
+@media screen and (min-width: 750px) {
+  /* Show ONLY desktop media */
+  slideshow-component .slideshow__video--desktop,
+  slideshow-component .slideshow__image--desktop {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  /* Hide ALL mobile media - STRICTLY */
+  slideshow-component .slideshow__video--mobile,
+  slideshow-component .slideshow__image--mobile {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+}
+
+/* ====================================
+   MOBILE MEDIA DISPLAY (<750px)
+   Strict hiding rules to prevent conflicts
+   ==================================== */
+@media screen and (max-width: 749px) {
+  /* Hide ALL desktop media - STRICTLY */
+  slideshow-component .slideshow__video--desktop,
+  slideshow-component .slideshow__image--desktop {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+  
+  /* Show mobile media if exists */
+  slideshow-component .slideshow__video--mobile,
+  slideshow-component .slideshow__image--mobile {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  /* Fallback: If no mobile media exists, show desktop media */
+  slideshow-component .slideshow__media:not(:has(.slideshow__video--mobile)):not(:has(.slideshow__image--mobile)) .slideshow__video--desktop,
+  slideshow-component .slideshow__media:not(:has(.slideshow__video--mobile)):not(:has(.slideshow__image--mobile)) .slideshow__image--desktop {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+  
+  /* Priority: Mobile video > Mobile image */
+  slideshow-component .slideshow__media:has(.slideshow__video--mobile) .slideshow__image--mobile {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+}
+
+/* ====================================
+   TEXT SIZE OPTIONS
+   ==================================== */
+slideshow-component .banner__text.body-small {
+  font-size: 1.4rem;
+}
+
+slideshow-component .banner__text.body {
+  font-size: 1.6rem;
+}
+
+slideshow-component .banner__text.body-large {
+  font-size: 1.8rem;
+}
+
+@media screen and (min-width: 750px) {
+  slideshow-component .banner__text.body-small {
+    font-size: 1.5rem;
+  }
+
+  slideshow-component .banner__text.body {
+    font-size: 1.7rem;
+  }
+
+  slideshow-component .banner__text.body-large {
+    font-size: 2rem;
+  }
+}
+
+/* ====================================
+   ANIMATION SUPPORT
+   ==================================== */
+slideshow-component .banner__media.animate--zoom-in .slideshow__media-item {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+}
+
+slideshow-component .banner__media.animate--ambient .slideshow__media-item {
+  animation: slideshow-ambient-motion 20s ease-in-out infinite;
+}
+
+@keyframes slideshow-ambient-motion {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* ====================================
+   ADAPT HEIGHT
+   ==================================== */
+slideshow-component .banner--adapt_image .slideshow__media {
+  position: relative;
+  height: auto;
+}
+
+slideshow-component .banner--adapt_image .slideshow__media-item {
+  position: relative;
+  height: auto;
+  width: 100%;
+}
+
+/* ====================================
+   MOBILE CONTENT POSITIONING & SIZING
+   ==================================== */
+
+/* Mobile-specific positioning - ONLY on mobile */
+@media screen and (max-width: 749px) {
+  slideshow-component .banner:not(.banner--mobile-bottom) .banner__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+  
+  /* Mobile-specific positioning classes - ONLY apply on mobile */
+  slideshow-component .banner__content--mobile-top-left {
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+  }
+
+  slideshow-component .banner__content--mobile-top-center {
+    align-items: flex-start !important;
+    justify-content: center !important;
+  }
+
+  slideshow-component .banner__content--mobile-top-right {
+    align-items: flex-start !important;
+    justify-content: flex-end !important;
+  }
+
+  slideshow-component .banner__content--mobile-middle-left {
+    align-items: center !important;
+    justify-content: flex-start !important;
+  }
+
+  slideshow-component .banner__content--mobile-middle-center {
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  slideshow-component .banner__content--mobile-middle-right {
+    align-items: center !important;
+    justify-content: flex-end !important;
+  }
+
+  slideshow-component .banner__content--mobile-bottom-left {
+    align-items: flex-end !important;
+    justify-content: flex-start !important;
+  }
+
+  slideshow-component .banner__content--mobile-bottom-center {
+    align-items: flex-end !important;
+    justify-content: center !important;
+  }
+
+  slideshow-component .banner__content--mobile-bottom-right {
+    align-items: flex-end !important;
+    justify-content: flex-end !important;
+  }
+  
+  /* Mobile content width control */
+  slideshow-component .slideshow__text.banner__box {
+    width: var(--mobile-content-width, 100%);
+    max-width: 100%;
+  }
+}
+/* ====================================
+   DESKTOP CONTENT POSITIONING - FIXED VERSION
+   More specific selectors to override base styles
+   ==================================== */
+@media screen and (min-width: 750px) {
+  /* Ensure content overlays the media */
+  slideshow-component .slideshow__text-wrapper.banner__content {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
+
+  /* Desktop positioning classes - Using more specific selectors */
+  slideshow-component .slideshow__text-wrapper.banner__content--top-left {
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+  }
+
+  slideshow-component .slideshow__text-wrapper.banner__content--top-center {
+    align-items: flex-start !important;
+    justify-content: center !important;
+  }
+
+  slideshow-component .slideshow__text-wrapper.banner__content--top-right {
+    align-items: flex-start !important;
+    justify-content: flex-end !important;
+  }
+
+  slideshow-component .slideshow__text-wrapper.banner__content--middle-left {
+    align-items: center !important;
+    justify-content: flex-start !important;
+  }
+
+  slideshow-component .slideshow__text-wrapper.banner__content--middle-center {
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  slideshow-component .slideshow__text-wrapper.banner__content--middle-right {
+    align-items: center !important;
+    justify-content: flex-end !important;
+  }
+
+  slideshow-component .slideshow__text-wrapper.banner__content--bottom-left {
+    align-items: flex-end !important;
+    justify-content: flex-start !important;
+  }
+
+  slideshow-component .slideshow__text-wrapper.banner__content--bottom-center {
+    align-items: flex-end !important;
+    justify-content: center !important;
+  }
+
+  slideshow-component .slideshow__text-wrapper.banner__content--bottom-right {
+    align-items: flex-end !important;
+    justify-content: flex-end !important;
+  }
+
+  /* Ensure text wrapper is visible */
+  slideshow-component .slideshow__text-wrapper {
+    position: relative;
+    z-index: 2;
+    display: flex;
+  }
+
+  /* Ensure text box is visible */
+  slideshow-component .slideshow__text.banner__box {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+  }
+}
+/* ====================================
+   PERFORMANCE OPTIMIZATIONS
+   ==================================== */
+slideshow-component .slideshow__video {
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Hide browser video controls */
+slideshow-component .slideshow__video::-webkit-media-controls {
+  display: none !important;
+}
+
+slideshow-component .slideshow__video::-webkit-media-controls-enclosure {
+  display: none !important;
+}
+
+/* ====================================
+   OVERLAY SUPPORT
+   ==================================== */
+slideshow-component .banner__media::after {
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Ensure text wrapper is always visible */
+slideshow-component .slideshow__text-wrapper {
+  position: relative;
+  z-index: 2;
+  display: block;
+}
+
+/* Ensure text content is always visible */
+slideshow-component .slideshow__text.banner__box {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Ensure heading and text are visible */
+slideshow-component .banner__heading,
+slideshow-component .banner__text,
+slideshow-component .banner__buttons {
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block;
+}
+
+/* ====================================
+   BROWSER COMPATIBILITY
+   ==================================== */
+
+/* Safari video rendering fix */
+@supports (-webkit-appearance: none) {
+  slideshow-component .slideshow__video {
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+  }
+}
+
+/* Ensure proper video loading */
+slideshow-component .slideshow__video[preload="auto"] {
+  visibility: visible;
+}
+
+/* Firefox video sizing */
+@-moz-document url-prefix() {
+  slideshow-component .slideshow__video {
+    min-width: 100%;
+    min-height: 100%;
+  }
+}
+
+/* ====================================
+   PLACEHOLDER STYLES
+   ==================================== */
+slideshow-component .slideshow__media.placeholder {
+  background-color: rgba(var(--color-foreground), 0.04);
+}
+
+slideshow-component .placeholder-svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ====================================
+   ADDITIONAL SAFEGUARDS
+   Ensure no base.css interference
+   ==================================== */
+
+/* Override any base.css media container styles */
+slideshow-component .media {
+  background-color: transparent !important;
+}
+
+/* Ensure our media items don't get base.css transitions */
+slideshow-component .slideshow__media-item {
+  transition: none !important;
+}
+
+/* Prevent base.css from affecting our positioning */
+slideshow-component .slideshow__media > * {
+  position: absolute !important;
+  max-width: 100% !important;
+}
