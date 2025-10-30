@@ -52,6 +52,23 @@
   .collage--mobile .collage__item--right:nth-child(3n) {
     grid-column: 1 / span 2;
   }
+
+  /* Bottom layout - mobile behaves same as collage mobile */
+  .collage--mobile .collage__item--bottom:nth-child(3n - 2) {
+    grid-column-start: 1;
+  }
+
+  .collage--mobile .collage__item--bottom:nth-child(3n - 2):last-child {
+    grid-column: span 2;
+  }
+
+  .collage--mobile .collage__item--bottom:nth-child(3n - 1) {
+    grid-column-start: 2;
+  }
+
+  .collage--mobile .collage__item--bottom:nth-child(3n) {
+    grid-column: 1 / span 2;
+  }
 }
 
 @media screen and (min-width: 750px) {
@@ -62,6 +79,7 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  /* LEFT LAYOUT - Large block on left */
   .collage__item--left:nth-child(3n - 2) {
     grid-column: 1 / span 2;
     grid-row: span 2;
@@ -80,6 +98,7 @@
     grid-row: span 2;
   }
 
+  /* RIGHT LAYOUT - Large block on right */
   .collage__item--right:nth-child(3n - 2) {
     grid-column: 1 / span 1;
     grid-row: span 1;
@@ -102,6 +121,32 @@
     grid-row: span 2;
   }
 
+  /* BOTTOM LAYOUT - First two blocks side by side, large block on bottom */
+  .collage__item--bottom:nth-child(1) {
+    grid-column: 1 / span 1;
+    grid-row: 1;
+  }
+
+  .collage__item--bottom:nth-child(2) {
+    grid-column: 2 / span 1;
+    grid-row: 1;
+  }
+
+  .collage__item--bottom:nth-child(3) {
+    grid-column: 1 / span 2;
+    grid-row: 2 / span 1;
+  }
+
+  /* Handle cases with less than 3 blocks for bottom layout */
+  .collage__item--bottom:nth-child(1):last-child {
+    grid-column: 1 / span 2;
+  }
+
+  .collage__item--bottom:nth-child(2):last-child {
+    grid-column: 2 / span 1;
+  }
+
+  /* Only child or single item */
   .collage__item--collection:only-child,
   .collage__item--product:only-child {
     justify-self: center;
@@ -199,4 +244,18 @@
 .collage-card .deferred-media__poster:focus {
   outline: none;
   box-shadow: none;
+}
+
+/* Inline video autoplay styles */
+.collage-video-inline {
+  height: 100%;
+  position: relative;
+}
+
+.collage-video-inline .media {
+  height: 100%;
+}
+
+.collage-video-inline iframe {
+  border-radius: calc(var(--border-radius) - var(--border-width) - var(--image-padding));
 }

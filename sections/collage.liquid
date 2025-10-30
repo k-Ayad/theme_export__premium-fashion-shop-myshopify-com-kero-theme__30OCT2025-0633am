@@ -61,7 +61,9 @@
                     {%- liquid
                       if section.settings.desktop_layout == 'left'
                         assign large_block = forloop.first
-                      else
+                      elsif section.settings.desktop_layout == 'right'
+                        assign large_block = forloop.last
+                      elsif section.settings.desktop_layout == 'bottom'
                         assign large_block = forloop.last
                       endif
 
@@ -318,10 +320,15 @@
         {
           "value": "right",
           "label": "t:sections.collage.settings.desktop_layout.options__2.label"
+        },
+        {
+          "value": "bottom",
+          "label": "Large block bottom"
         }
       ],
       "default": "left",
-      "label": "t:sections.collage.settings.desktop_layout.label"
+      "label": "t:sections.collage.settings.desktop_layout.label",
+      "info": "Bottom layout: First two blocks side by side on top, large block below"
     },
     {
       "type": "select",
