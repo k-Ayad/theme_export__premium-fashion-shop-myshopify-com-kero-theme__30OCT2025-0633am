@@ -182,8 +182,10 @@
           "type": "video",
           "settings": {
             "enable_video_autoplay": true,
-            "cover_image": "shopify://shop_images/Screenshot_2025-10-27_161518.png",
+            "video_type": "shopify",
             "video_url": "https://www.youtube.com/watch?v=Jo0iU-W_NDQ",
+            "shopify_video": "shopify://files/videos/611d7df48f9f44098a12721abaafff13.mp4",
+            "cover_image": "shopify://shop_images/Screenshot_2025-10-27_161518.png",
             "description": "Describe the video"
           }
         }
